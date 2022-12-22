@@ -61,11 +61,12 @@
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', url, true);
                 xhr.responseType = 'blob';
+                xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
                 xhr.onload = function (ev) {
                     if (this.status === 200) {
                         var file = this.response;
                         var name = url.split('\\').pop().split('/').pop();
-                        lpTag.agentSDK.command(cmdName, {file: file, name: name}, notifyWhenDone);
+                        lpTag.agentSDK.command(cmdName, {file: 'https://www.orange.es/static/img/checklist-sections-navegar-sin-limites.png', name: 'checklist-sections-navegar-sin-limites.png'}, notifyWhenDone);
                     }
                 };
                 xhr.send();      

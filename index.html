@@ -59,7 +59,7 @@
                 var cmdName = "Send File";
                 var url = 'https://github.com/AdrianoCorral/pagina-prueba/blob/main/Captura%20de%20pantalla%202022-12-22%20a%20las%2017.37.08.png?raw=true';
                 var xhr = new XMLHttpRequest();
-                xhr.open('GET', url, true);
+                xhr.open('GET', url, true, true);
                 xhr.responseType = 'blob';
                 xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
                 xhr.onload = function (ev) {

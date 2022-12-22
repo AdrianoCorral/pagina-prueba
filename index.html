@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <style>
+            body {
+                font-family: Roboto;
+                background-color: black;
+                color:white;
+            }
+            h2 {
+                font-family:sans-serif;
+                margin:0px;
+            }
+            button {
+                color: #f6720e;
+                border-color: #f6720e!important;
+                background-color: black;
+                border-radius: 20px;
+                padding: 10px;
+                margin: 5px;
+                        }
+                        p{
+                            font-family: sans-serif;
+                        margin: 0px 0px 20px 0px;
+                        font-size: 13px;
+                        }
+            #status-ok {
+                background-color: #157a4e;
+                color: #c9ffce;
+                padding: 10px;
+                margin: 5px;
+                font-family: sans-serif;
+                border-radius: 15px;
+                font-size: 13px;
+            }
+
+
+
+.recomm {
+    background-color: #201f1f;
+    padding: 10px;
+    border-radius: 24px;
+    margin: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+        </style>
+        <script src="https://lpcdn.lpsnmedia.net/webagent/client-SDK.min.js"></script>
+        <script>
+            lpTag.agentSDK.init();
+            function sendimg(message) {
+                var notifyWhenDone = function(err) {
+                    if (err) {
+                        // Do something with the error
+                    }
+                    // called when the command is completed successfully,
+                    // or when the action terminated with an error.
+                };
+
+                var cmdName = "Send File";
+                var url = 'https://www.orange.es/static/img/checklist-sections-navegar-sin-limites.png';
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.responseType = 'blob';
+                xhr.onload = function (ev) {
+                    if (this.status === 200) {
+                        var file = this.response;
+                        var name = url.split('\\').pop().split('/').pop();
+                        lpTag.agentSDK.command(cmdName, {file: file, name: name}, notifyWhenDone);
+                    }
+                };
+                xhr.send();      
+                }
+        </script>
+    </head>
+    <body>
+        <h2>Pruebas con el Agent Workspace widget SDK</h2>
+        <button id="buttonCheck" onclick="sendimg()">Enviar archivo</button>
+        <div id="chat-widget" style="display: none">
+
+        </div>
+    </body>
+</html>
